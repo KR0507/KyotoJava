@@ -7,10 +7,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LoginController {
-        @GetMapping("/Login")
-        public String Login(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-            model.addAttribute("name", name);
-            return "Login";
-        }
 
+        @Autowired
+        private JdbcTemplate jdbcTemplate;
+
+    @PostMapping("/login")
+    public String login(@RequestParam String username, @RequestParam String password, Model model) {
+        String sql = "SELECT * FROM USERS WHERE username = ? AND password = ?";
+        List<Map<String, Object>> users = jdbcTemplate.queryForList(sql, username, password);
+
+        if (users.isEmpty()) {
+            // ログイン失敗時の処理
+            model.addAttribute("error", "Invalid username or password");
+            return "login";
+        } else {
+            // ログイン成功時の処理
+            return "redirect:/attendanceList";
+        }
+    }
+
+    @GetMapping("/attendanceList")
+    public String attendanceList(Model model) {
+        String sql = "SELECT * FROM ATTENDANCES";
+        List<Map<String, Object>> attendances = jdbcTemplate.queryForList(sql);
+        model.addAttribute("attendances", attendances);
+        return "attendancelist";
+    }
 }
