@@ -21,13 +21,22 @@ public class AttendanceListController {
 
     @GetMapping("/attendanceList")
 
-        //List<Map<String, Object>> list = jdbcTemplate.queryForList("SELECT * FROM ATTENDANCES");
-        //list.forEach(System.out::println);
-        public String index(Model model){
-                String sql = "SELECT * FROM ATTENDANCES";
+    public String index(Model model) {
+        return "attendancelist";
+    }
 
-            System.out.println(jdbcTemplate.queryForList(sql));
-            return "attendancelist";
+    @PostMapping("/login")
+    public String login(@RequestParam String username, @RequestParam String password, Model model) {
+        String sql = "SELECT * FROM USERS WHERE username = ? AND password = ?";
+        List<Map<String, Object>> result = jdbcTemplate.queryForList(sql, username, password);
+
+        if (result.isEmpty()) {
+            // ログイン失敗時の処理
+            model.addAttribute("error", "Invalid username or password");
+            return "login";
+        } else {
+            // ログイン成功時の処理
+            return "redirect:/attendanceList";
         }
-
+    }
 }
