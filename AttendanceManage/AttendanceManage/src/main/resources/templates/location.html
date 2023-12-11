@@ -1,1 +1,20 @@
+ <!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+ <link href="../static/css/location.css" rel="stylesheet" type="text/css">
+ 
+</head>
 
+<div class="registration-form">
+  <form action="http://localhost:8080/Login" method="post">
+    <h2>連絡先登録</h2>
+    <label for="user-name">電話番号</label>
+    <input id="user-name" type="text" name="user-name" placeholder="">
+    <label for="e-mail">メールアドレス</label>
+    <input id="e-mail" type="email" name="e-mail" placeholder="">
+    <label for="note">備考</label>
+    <textarea id="note" name="note" rows="6"></textarea>
+  　</div>
+    <button type="submit">登録する</button>
+  </form>
+</div>
