@@ -10,15 +10,16 @@
       <div class="app-title">
         <h1>ログイン</h1>
       </div>
+      <form th:action="@{/Login}"method="post" th:object="${loginForm}">
 
       <div class="login-form">
         <div class="control-group">
-        <input type="text" class="login-field" value="" placeholder="username" id="login-name">
+        <input type="text" class="login-field" th:field="*{loginId}">
         <label class="login-field-icon fui-user" for="login-name"></label>
         </div>
 
         <div class="control-group">
-        <input type="password" class="login-field" value="" placeholder="password" id="login-pass">
+        <input type="password" class="login-field" th:field="*{password}">
         <label class="login-field-icon fui-lock" for="login-pass"></label>
         </div>
 
