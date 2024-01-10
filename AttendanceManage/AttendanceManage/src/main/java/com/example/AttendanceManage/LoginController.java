@@ -6,42 +6,33 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.AttendanceManage.entity.User;
 import com.example.AttendanceManage.form.LoginForm;
+import com.example.AttendanceManage.repository.UserRepository;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
-
-@Data
-@Entity
-@Table(name = "attendancelist")
 @Controller
 public class LoginController {
 	
-	@Id
-	@Autowired
-	private AttendanceListRepository attendanceListRepository;
-	
-	
-	@GetMapping("/Login")
-	public String view(Model model,LoginForm form) {
-		
-		return "Login";
-    }
-	
-	@PostMapping("/Login")
-    public String login(Model model, LoginForm form) {
-        // データベースからユーザー情報を取得
-        AttendanceList user = attendanceListRepository.findByIdAndPassword(form.getLoginId(), form.getPassword());
+    @Autowired
+    private UserRepository userRepository;
 
-        if (user != null) {
-            // ユーザーが存在すればMenu.htmlにリダイレクト
-            return "redirect:/Menu";
+    @GetMapping("/login")
+    public String showLoginForm(Model model) {
+    	model.addAttribute("loginForm", new LoginForm());
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(LoginForm loginForm, Model model) {
+    	User user = userRepository.findById(loginForm.getId()).orElse(null);
+
+        if (user != null && user.getPassword().equals(loginForm.getPassword())) {
+            return "redirect:/menu";
         } else {
-            model.addAttribute("errorMsg", "IDもしくはパスワードが間違いです。");
-            return "Login";
-		}
-	}
-	
+            model.addAttribute("error", "IDまたはパスワードが正しくありません");
+            return "login";
+        }
+    }
+
+
 }
