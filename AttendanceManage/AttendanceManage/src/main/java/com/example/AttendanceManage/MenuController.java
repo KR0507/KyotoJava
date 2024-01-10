@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MenuController {
 	
-	@GetMapping("/Menu")
+	@GetMapping("/menu")
 	public String view() {
 		
-		return "Menu";
+		return "menu";
 	}
 
 }

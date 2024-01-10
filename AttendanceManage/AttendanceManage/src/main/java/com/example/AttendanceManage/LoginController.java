@@ -27,7 +27,11 @@ public class LoginController {
     	User user = userRepository.findById(loginForm.getId()).orElse(null);
 
         if (user != null && user.getPassword().equals(loginForm.getPassword())) {
-            return "redirect:/menu";
+            if (user.getAdmin() != null && user.getAdmin() == 1) {
+                return "redirect:/admenu";
+            } else {
+                return "redirect:/menu";
+            }
         } else {
             model.addAttribute("error", "IDまたはパスワードが正しくありません");
             return "login";

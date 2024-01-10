@@ -11,6 +11,7 @@ public class User {
     @Id
     private Integer id;
     private String password;
+    private Integer admin;
 
     public Integer getId() {
         return id;
@@ -19,6 +20,7 @@ public class User {
     public void setId(Integer id) {
         this.id = id;
     }
+    
 
     public String getPassword() {
         return password;
@@ -27,4 +29,14 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    
+    public Integer getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Integer admin) {
+        this.admin = admin;
+    }
+    
 }
