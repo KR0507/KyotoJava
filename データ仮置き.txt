@@ -1,0 +1,9 @@
+CREATE TABLE attendancelist (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(16) NOT NULL,
+    password VARCHAR(8) NOT NULL,
+    location VARCHAR(8) NOT NULL,
+    contact VARCHAR(12) NOT NULL,
+    state INTEGER NOT NULL,
+    admin INTEGER NOT NULL
+	);
