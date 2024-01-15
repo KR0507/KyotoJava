@@ -24,8 +24,16 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(LoginForm loginForm, Model model) {
+    	
+        if (loginForm.getId().isEmpty() || loginForm.getPassword().isEmpty()) {
+            model.addAttribute("error", "IDとパスワードを入力してください");
+            return "login";
+        }
+    	
+    	
     	User user = userRepository.findById(loginForm.getId()).orElse(null);
-
+    	
+    	
         if (user != null && user.getPassword().equals(loginForm.getPassword())) {
             if (user.getAdmin() != null && user.getAdmin() == 1) {
                 return "redirect:/admenu";
