@@ -1,0 +1,17 @@
+CREATE TABLE attendancelist (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(16) NOT NULL,
+    password VARCHAR(8) NOT NULL,
+    location VARCHAR(8) NOT NULL,
+    contact VARCHAR(12) NOT NULL,
+    state INTEGER NOT NULL,
+    admin INTEGER NOT NULL
+	);
+
+
+
+
+
+
+INSERT INTO attendancelist(id,name,password,location,contact,state,admin) VALUES('1000','admin','1000','a','08011111111','0','1')
+INSERT INTO attendancelist(id,name,password,location,contact,state,admin) VALUES('1001','gest','1001','b','08022222222','0','0')
