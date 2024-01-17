@@ -13,5 +13,5 @@ CREATE TABLE attendancelist (
 
 
 
-INSERT INTO attendancelist(id,name,password,location,contact,state,admin) VALUES('1000','admin','1000','a','08011111111','0','1')
-INSERT INTO attendancelist(id,name,password,location,contact,state,admin) VALUES('1001','gest','1001','b','08022222222','0','0')
+INSERT INTO userlist(id,name,password,state,admin) VALUES('1000','admin','1000','0','1')
+INSERT INTO userlist(id,name,password,state,admin) VALUES('1001','gest','1001','0','0')
