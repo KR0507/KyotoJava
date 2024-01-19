@@ -38,7 +38,7 @@ public class LoginController {
             if (user.getAdmin() != null && user.getAdmin() == 1) {
                 return "redirect:/admenu";
             } else {
-                return "redirect:/menu";
+                return "redirect:/kintainyuryoku";
             }
         } else {
             model.addAttribute("error", "IDまたはパスワードが正しくありません");
